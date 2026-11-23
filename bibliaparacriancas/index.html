@@ -424,19 +424,17 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
   'use strict';
 
   /* 1. CONFIGURACAO ─────────────────────────────────────────────── */
-       garantiaDias: 30,
   var CONFIG = {
     produto: 'Bíblia para Crianças',
-
-              garan
+    prototipo: false,                // faixa de protótipo oculta na versão publicada
     checkoutUrl: 'https://pay.kiwify.com.br/IjXkME1',
     totalVideos: '120',              // quantidade real de mini videos do produto
     minutosVideo: '3 a 5',
     precoDe: 'R$ 97,00',             // so use se ja vendeu por esse valor
     precoPor: 'R$ 19,90',
     parcelas: 'Pagamento único · acesso vitalício',
-    
-        eventosNoPixel: false,
+    garantiaDias: 30,
+    eventosNoPixel: false,
 
     // Painel do funil (Supabase): "Project URL" e a chave "anon public" do projeto.
     painelUrl: '',      // ex.: 'https://abcd1234.supabase.co'
@@ -589,12 +587,6 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
   function evento(nome, dados) {
     if (revisao) return;
     enviarPainel(nome, dados || {});
-    try {
-      window.dataLayer = window.dataLayer || [];
-      var o = { event: nome }; for (var k in (dados || {})) o[k] = dados[k];
-      window.dataLayer.push(o);
-      if (false &&  typeof window.fbq === 'function') window.fbq('trackCustom', nome, {});
-    } catch (e) {}
   }
 
   /* 7. ESTADO ────────────────────────────────────────────────────── */
