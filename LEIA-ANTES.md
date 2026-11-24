@@ -1,5 +1,5 @@
-# Publicação — Bíblia em Minutinhos
+# Publicação — Bíblia para Crianças
 
-Este diretório contém uma cópia fiel do quiz original em `index.html` para publicação no GitHub Pages.
+A página oficial do quiz está em `bibliaparacriancas/index.html`, com as imagens correspondentes em `bibliaparacriancas/assets/`. Publique e mantenha esses arquivos juntos.
 
-Não editar o quiz nem a oferta. O destino temporário do botão na Kiwify permanece até domínio e página próprios estarem funcionando.
+A página da raiz do domínio (`index.html`) encaminha para o início do quiz, preservando parâmetros de campanha e limpando o progresso anterior com `?inicio=1`. Não duplique a versão antiga nem altere oferta, conteúdo, arte ou fluxo do quiz sem autorização específica.
