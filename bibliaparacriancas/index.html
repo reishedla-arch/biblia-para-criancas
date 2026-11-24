@@ -959,7 +959,7 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
   /* 10. PARTIDA ──────────────────────────────────────────────────── */
   var params = new URLSearchParams(location.search);
   var hash = /^#revisao-(\d+)$/.exec(location.hash || '');
-  revisao = params.get('review') === '1' || !!hash;
+  if (params.get('inicio') === '1') { try { localStorage.removeItem(CHAVE); } catch (e) {} params.delete('inicio'); var query = params.toString(); history.replaceState(null, '', location.pathname + (query ? '?' + query : '') + location.hash); } revisao = params.get('review') === '1' || !!hash;
   if (revisao) { passo = limite(hash ? hash[1] - 1 : (params.get('step') || 0)); resp = JSON.parse(JSON.stringify(EXEMPLO)); }
   else {
     atribuicao = params.toString();
