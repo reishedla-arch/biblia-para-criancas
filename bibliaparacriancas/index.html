@@ -82,8 +82,9 @@ h3 { font-weight: 700; font-size: 20px; line-height: 1.25; }
 .sub { margin: 0; text-align: center; color: var(--cinza); font-size: 15.5px; line-height: 1.55; }
 .sub strong { color: var(--noite); }
 .copy { margin: 0; color: #3A465C; }
+.copy-intro-produto { text-align: center; font-size: 14px; line-height: 1.5; padding: 12px 14px; background: var(--cartao); border: 1px solid var(--linha); border-radius: 16px; box-shadow: var(--sombra); }
 .copy strong { color: var(--noite); }
-.dica { margin: 0; text-align: center; color: var(--cinza); font-size: 13px; font-weight: 600; }
+.dica { margin: 0; text-align: center; color: var(--noite); font-size: 14.5px; font-weight: 700; background: var(--folha-claro); border: 1px solid #B9E0CA; border-radius: 14px; padding: 11px 13px; }
 .legal { margin: 0; text-align: center; color: var(--cinza); font-size: 12px; }
 
 /* botao */
@@ -97,6 +98,9 @@ h3 { font-weight: 700; font-size: 20px; line-height: 1.25; }
 @keyframes pulsa { 50% { transform: scale(1.018); } }
 @media (prefers-reduced-motion: reduce) { .cta.pulsa { animation: none; } }
 .cta--verde { background: linear-gradient(180deg, #38B072, var(--folha-escura)); box-shadow: 0 1px 0 rgba(255, 255, 255, .2) inset, 0 10px 24px rgba(31, 122, 75, .3); }
+.cta--destaque { min-height: 68px; font-size: 18px; animation: pisca-cta 1.15s ease-in-out infinite; }
+@keyframes pisca-cta { 50% { filter: brightness(1.2); box-shadow: 0 0 0 6px rgba(56,176,114,.18), 0 0 24px rgba(56,176,114,.5); } }
+@media (prefers-reduced-motion: reduce) { .cta--destaque { animation: none; } }
 :focus-visible { outline: 3px solid var(--ouro); outline-offset: 2px; }
 
 /* respostas */
@@ -193,11 +197,13 @@ h3 { font-weight: 700; font-size: 20px; line-height: 1.25; }
 .ancora s { color: var(--alerta); font-weight: 700; white-space: nowrap; text-decoration-thickness: 1.5px; }
 .ancora .hoje { border-color: #B9E0CA; background: var(--folha-claro); }
 .ancora .hoje strong { color: var(--folha-escura); font-family: var(--display); font-size: 1.3em; white-space: nowrap; }
-.preco-card { position: relative; border: 1.5px solid #B9E0CA; background: linear-gradient(180deg, #FFFFFF, #F0F9F4); border-radius: 24px; padding: 30px 18px 20px; text-align: center; display: grid; gap: 8px; margin-top: 12px; box-shadow: var(--sombra-forte); }
+.preco-card { position: relative; border: 3px solid var(--folha-escura); background: linear-gradient(180deg, #FFFFFF, #E8F7EE); border-radius: 24px; padding: 34px 20px 24px; text-align: center; display: grid; gap: 10px; margin-top: 18px; box-shadow: 0 12px 32px rgba(31,122,75,.2); }
 .preco-selo { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: var(--folha); color: var(--branco); border-radius: 99px; padding: 5px 16px; font-family: var(--texto); font-weight: 800; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 6px 14px rgba(31, 122, 75, .25); }
 .preco-de { margin: 0; color: var(--cinza); font-size: 15px; } .preco-de s { color: var(--alerta); text-decoration-thickness: 1.5px; }
 .preco-por { margin: 0; font-family: var(--display); font-weight: 700; font-size: 56px; line-height: 1; color: var(--folha-escura); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
 .preco-nota { margin: 0; color: var(--cinza); font-size: 13.5px; font-weight: 600; }
+.card.bonus-oferta { border: 2px solid #E2B858; background: linear-gradient(180deg, #FFFEFA, #FFF7E2); box-shadow: 0 10px 26px rgba(151,105,20,.14); padding: 23px 20px; }
+.card.bonus-oferta > h3 { color: var(--noite); font-size: 19px; }
 .bonus { display: grid; gap: 8px; }
 .bonus div { display: grid; grid-template-columns: 46px 1fr auto; gap: 12px; align-items: center; background: #FFFBF3; border: 1px solid #F0DDB5; border-radius: 16px; padding: 10px 12px; }
 .bonus .ic { width: 46px; height: 46px; border-radius: 13px; background: var(--ouro-claro); display: grid; place-items: center; font-size: 24px; }
@@ -496,7 +502,7 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
     ['pergunta', 'quando', 'Melhor momento'],
     ['provas', null, 'Depoimentos'],
     ['carregando', null, 'Carregando'],
-    ['resultado', null, 'Plano'],
+    ['resultado', null, 'Histórias'],
     ['oferta', null, 'Oferta']
   ];
 
@@ -535,6 +541,9 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
   function menina() { return resp.sexo === 'Menina'; }
   function alvo() { return { s: menina() ? 'sua filha' : 'seu filho', p: menina() ? 'suas filhas' : 'seus filhos', t: 'a sua turma' }[grupo()]; }
   function dele() { return { s: menina() ? 'da sua filha' : 'do seu filho', p: menina() ? 'das suas filhas' : 'dos seus filhos', t: 'da sua turma' }[grupo()]; }
+  function referenciaOferta() { return grupo() === 't' ? 'a turma' : (menina() ? 'sua filha' : 'seu filho'); }
+  function coracaoOferta() { return grupo() === 't' ? 'de cada criança' : (menina() ? 'da sua filha' : 'do seu filho'); }
+  function ctaOferta() { return grupo() === 't' ? 'minha turma' : (menina() ? 'minha filha' : 'meu filho'); }
   function verbo(sing, plur) { return grupo() === 'p' ? plur : sing; }
   function faixa() { return resp.idade || '5 a 7 anos'; }
   function checkout() {
@@ -673,10 +682,11 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
         carrosselCapas() +
         '<p class="eyebrow receber-tit">Um jeito mais divertido de aproximar seu filho de Deus</p>' +
         '<ul class="checks">' +
-          '<li><span><strong>Vídeos de histórias bíblicas em desenhos animados:</strong> dinâmicos, cheios de cor e aventura.</span></li>' +
-          '<li><span><strong>Músicas bíblicas</strong> para o seu filho(a) cantar, dançar e lembrar de cada história.</span></li>' +
-          '<li><span><strong>Atividades bíblicas para colorir</strong> e deixar o seu filho ainda mais próximo de Jesus.</span></li>' +
+          '<li><span><strong>+120 vídeos animados de histórias bíblicas:</strong> dinâmicos, cheios de cor e aventura.</span></li>' +
+          '<li><span><strong>🎁 Bônus: músicas bíblicas</strong> para o seu filho(a) cantar, dançar e lembrar de cada história.</span></li>' +
+          '<li><span><strong>🎁 Bônus: atividades bíblicas para colorir</strong> e deixar o seu filho ainda mais próximo de Jesus.</span></li>' +
         '</ul>' +
+        '<p class="copy copy-intro-produto">Com histórias envolventes, seu filho pode conhecer os ensinamentos de Deus de um jeito leve e divertido e levar cada aprendizado no coração e na memória.</p>' +
         '<p class="vers-mini">"Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele." <b>Provérbios 22:6</b></p>' +
         '<p class="sexo-tit">Para quem são essas histórias? 👇</p>' +
         '<div class="sexo">' +
@@ -788,7 +798,7 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
           '<li><span class="num">⏱️</span><div><b>Curtinho</b><span>Vídeos de ' + esc(CONFIG.minutosVideo) + ' minutos, do tamanho da atenção da criança</span></div></li>' +
           '<li><span class="num">🎨</span><div><b>Animado e colorido</b><span>A história entra pelos olhos e fica na memória</span></div></li>' +
           '<li><span class="num">💬</span><div><b>Com uma pergunta no final</b><span>Para vocês conversarem e ela contar com as próprias palavras</span></div></li>' +
-          '<li><span class="num">📅</span><div><b>Na ordem certa, por idade</b><span>Um plano de 30 dias, do Gênesis até Jesus, no ritmo do seu filho</span></div></li>' +
+          '<li><span class="num">📅</span><div><b>Na ordem certa, por idade</b><span>Uma jornada de 30 dias, do Gênesis até Jesus, no ritmo de ' + (grupo() === 't' ? 'sua turma' : (menina() ? 'sua filha' : 'seu filho')) + '</span></div></li>' +
         '</ul>' +
         '<p class="versiculo">"Ensina a criança no caminho em que deve andar..." <b>Provérbios 22:6</b></p>' +
         '<button class="cta" type="button" id="seguir">Faz todo sentido ›</button>' +
@@ -805,19 +815,19 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
           DEPOIMENTOS.map(function (d) { return '<figure><span class="estrelas" aria-label="5 estrelas">★★★★★</span><blockquote>"' + esc(d.texto) + '"</blockquote><figcaption class="quem">' + (d.foto ? '<img src="' + d.foto + '" alt="" width="44" height="44" loading="lazy">' : '') + '<span>' + esc(d.autor) + '<small>Cliente Bíblia para Crianças ✓</small></span></figcaption></figure>'; }).join('') +
         '</div>' +
         '<p class="legal">*Nomes alterados a pedido das clientes.</p>' +
-        '<button class="cta" type="button" id="seguir">Montar o plano do meu filho ›</button>' +
+        '<button class="cta" type="button" id="seguir">Ver as histórias para meu filho ›</button>' +
       '</section>';
     document.getElementById('seguir').addEventListener('click', function () { mover(1); });
   }
 
   function telaCarregando() {
-    var itens = ['Analisando a idade: ' + faixa(), 'Escolhendo as histórias certas para essa fase', 'Organizando o momento: ' + (resp.quando || 'em família').toLowerCase(), 'Montando o plano de 30 dias'];
+    var itens = ['Analisando a idade: ' + faixa(), 'Escolhendo as histórias certas para essa fase', 'Organizando o momento: ' + (resp.quando || 'em família').toLowerCase(), 'Organizando a jornada de 30 dias'];
     var C = 2 * Math.PI * 56;
     tela.innerHTML =
       '<section class="screen" style="text-align:center">' +
-        '<div class="anel" role="progressbar" aria-label="Montando o plano" aria-valuemin="0" aria-valuemax="100"><svg viewBox="0 0 132 132" aria-hidden="true"><circle cx="66" cy="66" r="56" fill="none" stroke="var(--linha)" stroke-width="10"/>' +
+        '<div class="anel" role="progressbar" aria-label="Organizando as histórias" aria-valuemin="0" aria-valuemax="100"><svg viewBox="0 0 132 132" aria-hidden="true"><circle cx="66" cy="66" r="56" fill="none" stroke="var(--linha)" stroke-width="10"/>' +
         '<circle id="arco" cx="66" cy="66" r="56" fill="none" stroke="var(--ceu)" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '"/></svg><strong id="pct">0%</strong></div>' +
-        '<h2>Estamos montando o plano ' + dele() + '</h2>' +
+        '<h2>Estamos organizando as histórias para ' + dele() + '</h2>' +
         '<div class="etapas-load" id="itens" style="text-align:left">' + itens.map(function (t) { return '<div><i>✓</i>' + esc(t) + '</div>'; }).join('') + '</div>' +
       '</section>';
     var dur = revisao ? 3500 : 7000, inicio = Date.now();
@@ -836,71 +846,70 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
     var h = HISTORIAS[faixa()] || HISTORIAS['5 a 7 anos'];
     var temas = ['Deus criou tudo', 'Deus cuida do seu povo', 'Coragem e fé', 'Jesus, o nosso Salvador'];
     var foco = Array.isArray(resp.aprender) && resp.aprender.length ? resp.aprender[0] : 'As histórias da Bíblia';
-    var compat = 92 + (String(resp.idade || '').length + String(resp.quando || '').length) % 7;
     tela.innerHTML =
       '<section class="screen">' +
-        '<p class="eyebrow">Plano pronto 🎉</p>' +
-        '<h2>O plano de 30 dias ' + dele() + ' está pronto</h2>' +
+        '<p class="eyebrow">Histórias selecionadas 🎉</p>' +
+        '<h2>A jornada de histórias para ' + alvo() + ' está pronta</h2>' +
         '<div class="perfil">' +
           '<div><span>Idade</span><strong>' + esc(faixa()) + '</strong></div>' +
           '<div><span>Momento</span><strong>' + esc(resp.quando || 'Em família') + '</strong></div>' +
           '<div><span>Tempo por dia</span><strong>' + esc(CONFIG.minutosVideo) + ' minutos</strong></div>' +
           '<div><span>Foco</span><strong>' + esc(foco) + '</strong></div>' +
         '</div>' +
-        '<div class="compat"><div><span>Compatível com o perfil ' + dele() + '</span><strong>' + compat + '%</strong></div><div class="barra"><span style="width:' + compat + '%"></span></div></div>' +
-        '<h3 style="text-align:center">As primeiras histórias do plano</h3>' +
+        '<div class="compat"><div><span>Histórias selecionadas para ' + dele() + '</span><strong>' + esc(foco) + '</strong></div></div>' +
+        '<h3 style="text-align:center">Algumas histórias desta jornada</h3>' +
         '<ol class="semanas">' +
           h.map(function (lista, i) { return '<li><span class="sem">Semana ' + (i + 1) + ' · ' + esc(temas[i]) + '</span><div class="hist">' + lista.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</div></li>'; }).join('') +
         '</ol>' +
         '<p class="copy" style="text-align:center">Em 30 dias, ' + alvo() + ' ' + verbo('vai', 'vão') + ' conhecer as principais histórias da Bíblia e conseguir <strong>contar cada uma com as próprias palavras</strong>.</p>' +
-        '<button class="cta pulsa" type="button" id="seguir">Ver como liberar o plano ›</button>' +
+        '<button class="cta pulsa" type="button" id="seguir">Ver como acessar as histórias ›</button>' +
       '</section>';
     document.getElementById('seguir').addEventListener('click', function () { mover(1); });
   }
 
   function telaOferta() {
     var receber = [
-      '+' + CONFIG.totalVideos + ' mini vídeos animados de ' + CONFIG.minutosVideo + ' minutos, do Gênesis ao Apocalipse',
-      'Plano de 30 dias organizado por idade (' + faixa() + ')',
-      'Uma pergunta para conversar no final de cada vídeo',
+      '+' + CONFIG.totalVideos + ' vídeos animados de ' + CONFIG.minutosVideo + ' minutos, do Gênesis ao Apocalipse',
       'Acesse no celular, tablet ou TV, quantas vezes quiser',
       'Acesso vitalício: paga uma vez, sem mensalidade'
     ];
     var bonus = [
-      ['🎵', 'Músicas de cada história', 'Para cantar, dançar e lembrar de cada história', 'R$ 27'],
-      ['🖍️', 'Atividades para colorir de cada história', 'Para imprimir e fixar o que aprendeu', 'R$ 27']
+      ['🎵', 'Músicas de cada história', 'Para cantar, dançar e lembrar de cada história', ''],
+      ['🖍️', 'Atividades para colorir de cada história', 'Para imprimir e fixar o que aprendeu', '']
     ];
     var faq = [
-      ['Para qual idade é?', 'De 2 a 12 anos. O plano é organizado por faixa de idade, com linguagem própria para cada fase.'],
-      ['Preciso entender muito da Bíblia?', 'Não. Os vídeos explicam tudo de um jeito simples. Você só assiste junto e faz a perguntinha do final.'],
+      ['Para qual idade é?', 'De 2 a 12 anos. As histórias são apresentadas em uma sequência adequada a cada faixa etária.'],
+      ['Preciso entender muito da Bíblia?', 'Não. Os vídeos contam as histórias de forma simples. A criança pode assistir e responder à perguntinha final; você pode acompanhar quando quiser.'],
       ['Serve para várias crianças?', 'Sim. O acesso é da família: todos os seus filhos podem assistir.'],
       ['Posso usar na escola bíblica ou no culto infantil?', 'Pode. Muitas professoras usam os vídeos para abrir a aula.'],
       ['É de alguma denominação?', 'Não. Os vídeos contam as histórias como estão na Bíblia, para famílias cristãs de qualquer igreja.'],
-      ['Como recebo o acesso?', 'Logo depois da confirmação do pagamento, no seu e-mail.'],
+      ['Como recebo o acesso?', 'Após a confirmação do pagamento, a Kiwify envia ao e-mail informado na compra as instruções e o link de acesso à área de membros. Se não encontrar, confira Spam, Promoções e Lixo eletrônico.'],
       ['E se eu não gostar?', 'Você tem ' + CONFIG.garantiaDias + ' dias de garantia. Pediu, recebe 100% do valor de volta.']
     ];
     var href = esc(checkout());
     tela.innerHTML =
       '<section class="screen">' +
-        '<p class="eyebrow">Seu plano está pronto</p>' +
+        '<p class="eyebrow">Sua jornada de histórias está pronta</p>' +
         '<h2>Libere agora o <span class="marca">' + esc(CONFIG.produto) + '</span> para ' + alvo() + '</h2>' +
+        '<p class="sub">Mais de 120 vídeos animados transformam parte do tempo de tela em aventuras bíblicas. Em 30 dias, ' + alvo() + ' ' + verbo('conhecerá', 'conhecerão') + ' as principais histórias da Bíblia e ' + verbo('conseguirá', 'conseguirão') + ' contá-las com as próprias palavras — de um jeito divertido, com ensinamentos para levar no coração.</p>' +
         carrosselCapas() +
+        '<div class="card video-demo"><h3>Veja uma história sendo assistida no celular</h3><video controls playsinline muted preload="metadata" style="display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;border-radius:16px;background:#1B2B4B" poster="./assets/historias-celular-crianca-parda-poster.jpg" aria-label="Demonstração de uma história bíblica animada sendo assistida em um celular"><source src="./assets/historias-celular-crianca-parda-sem-audio.mp4" type="video/mp4">Seu navegador não reproduz este vídeo.</video><p class="copy">Prévia demonstrativa do conteúdo em um celular. O vídeo está sem áudio.</p></div>' +
         '<div class="card"><h3>O que você vai receber</h3><ul class="checks">' + receber.map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') + '</ul></div>' +
-        '<div class="card"><h3>🎁 Bônus de hoje</h3><div class="bonus">' +
-          bonus.map(function (b) { return '<div><span class="ic" aria-hidden="true">' + b[0] + '</span><span><b>' + esc(b[1]) + '</b><small>' + esc(b[2]) + '</small></span><s>' + esc(b[3]) + '</s></div>'; }).join('') +
+        '<div class="card bonus-oferta"><h3>🎁 Você também vai receber estes bônus</h3><div class="bonus">' +
+          bonus.map(function (b) { return '<div><span class="ic" aria-hidden="true">' + b[0] + '</span><span><b>' + esc(b[1]) + '</b><small>' + esc(b[2]) + '</small></span>' + (b[3] ? '<s>' + esc(b[3]) + '</s>' : '') + '</div>'; }).join('') +
         '</div></div>' +
-        '<div class="card"><h3>Quanto custaria de outro jeito?</h3><div class="ancora">' +
-          '<div><span>1 ano de streaming infantil cristão</span><s>R$ 274,80</s></div>' +
-          '<div><span>Material de escola bíblica impresso</span><s>R$ 120,00</s></div>' +
-          '<div class="hoje"><span>' + esc(CONFIG.produto) + ' (vitalício)</span><strong>' + esc(CONFIG.precoPor) + '</strong></div>' +
-        '</div><p class="copy">Pagando uma vez só, sai por <strong>menos de R$ 1 por dia</strong> no primeiro mês, e depois é seu para sempre.</p></div>' +
+        '<div class="card"><h3>Preço transparente, acesso vitalício</h3><div class="ancora">' +
+          '<div><span>Pagamento único</span><strong>' + esc(CONFIG.precoPor) + '</strong></div>' +
+          '<div class="hoje"><span>Acesso vitalício, sem mensalidade</span><strong>Para sempre</strong></div>' +
+        '</div><p class="copy">Como referência, R$ 19,90 divididos por 360 dias equivalem a cerca de <strong>R$ 0,06 por dia no primeiro ano</strong>. Essa é apenas uma comparação: não existe cobrança diária. Você paga uma única vez e tem acesso vitalício.</p></div>' +
+        '<div class="card oferta-reforco"><p class="copy" style="text-align:center"><strong>Troque parte do tempo de tela sem propósito por histórias que aproximam ' + referenciaOferta() + ' de Deus.</strong> Uma forma divertida de apresentar ensinamentos bíblicos que podem ficar guardados no coração ' + coracaoOferta() + '.</p></div>' +
         '<div class="preco-card">' +
           '<span class="preco-selo">Oferta de hoje</span>' +
           (CONFIG.precoDe ? '<p class="preco-de">De <s>' + esc(CONFIG.precoDe) + '</s> por apenas</p>' : '<p class="preco-de">Hoje por apenas</p>') +
           '<p class="preco-por">' + esc(CONFIG.precoPor) + '</p>' +
           '<p class="preco-nota">' + esc(CONFIG.parcelas) + '</p>' +
-          '<a class="cta cta--verde pulsa" id="comprar" href="' + href + '" target="_top">Quero liberar o plano ›</a>' +
-          '<p class="legal">🔒 Compra 100% segura · Garantia de ' + CONFIG.garantiaDias + ' dias</p>' +
+          '<a class="cta cta--verde pulsa" id="comprar" href="' + href + '" target="_top">Quero liberar as histórias ›</a>' +
+          '<p class="legal">🔒 Pagamento processado pela Kiwify · Garantia de ' + CONFIG.garantiaDias + ' dias</p>' +
         '</div>' +
         '<div class="garantia"><div class="selo-gar">' + CONFIG.garantiaDias + '<small>DIAS</small></div>' +
           '<p class="copy" style="margin:0"><strong>Garantia incondicional.</strong> Se em ' + CONFIG.garantiaDias + ' dias você achar que não é para a sua família, é só pedir e devolvemos 100% do valor.</p></div>' +
@@ -909,7 +918,7 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
         '</div></div>' +
         '<div class="card faq"><h3>Perguntas frequentes</h3>' + faq.map(function (f) { return '<details><summary>' + esc(f[0]) + '</summary><p>' + esc(f[1]) + '</p></details>'; }).join('') + '</div>' +
         '<p class="versiculo">"Deixai vir a mim as criancinhas..." <b>Marcos 10:14</b></p>' +
-        '<a class="cta cta--verde" id="comprar2" href="' + href + '" target="_top">Começar hoje com ' + alvo() + ' ›</a>' +
+        '<a class="cta cta--verde cta--destaque" id="comprar2" href="' + href + '" target="_top">Quero isso para ' + ctaOferta() + ' hoje ›</a>' +
       '</section>';
     ligarCarrosselCapas();
     ['comprar', 'comprar2'].forEach(function (id) {
@@ -1002,3 +1011,4 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
 </script>
 
 </body></html>
+
