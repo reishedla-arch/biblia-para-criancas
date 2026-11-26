@@ -827,7 +827,7 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
       '<section class="screen" style="text-align:center">' +
         '<div class="anel" role="progressbar" aria-label="Organizando as histórias" aria-valuemin="0" aria-valuemax="100"><svg viewBox="0 0 132 132" aria-hidden="true"><circle cx="66" cy="66" r="56" fill="none" stroke="var(--linha)" stroke-width="10"/>' +
         '<circle id="arco" cx="66" cy="66" r="56" fill="none" stroke="var(--ceu)" stroke-width="10" stroke-linecap="round" stroke-dasharray="' + C + '" stroke-dashoffset="' + C + '"/></svg><strong id="pct">0%</strong></div>' +
-        '<h2>Estamos organizando as histórias para ' + dele() + '</h2>' +
+        '<h2>Estamos organizando as histórias para ' + alvo() + '</h2>' +
         '<div class="etapas-load" id="itens" style="text-align:left">' + itens.map(function (t) { return '<div><i>✓</i>' + esc(t) + '</div>'; }).join('') + '</div>' +
       '</section>';
     var dur = revisao ? 3500 : 7000, inicio = Date.now();
@@ -856,7 +856,7 @@ var VIDEO_FAMILIA=(function(){var d='AAAAIGZ0eXBpc29tAAACAGlzb21pc28yYXZjMW1wNDE
           '<div><span>Tempo por dia</span><strong>' + esc(CONFIG.minutosVideo) + ' minutos</strong></div>' +
           '<div><span>Foco</span><strong>' + esc(foco) + '</strong></div>' +
         '</div>' +
-        '<div class="compat"><div><span>Histórias selecionadas para ' + dele() + '</span><strong>' + esc(foco) + '</strong></div></div>' +
+        '<div class="compat"><div><span>Histórias selecionadas para ' + alvo() + '</span><strong>' + esc(foco) + '</strong></div></div>' +
         '<h3 style="text-align:center">Algumas histórias desta jornada</h3>' +
         '<ol class="semanas">' +
           h.map(function (lista, i) { return '<li><span class="sem">Semana ' + (i + 1) + ' · ' + esc(temas[i]) + '</span><div class="hist">' + lista.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join('') + '</div></li>'; }).join('') +
